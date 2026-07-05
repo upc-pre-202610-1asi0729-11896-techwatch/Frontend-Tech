@@ -1,5 +1,5 @@
 import {Component, computed, effect, inject, signal} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatError} from '@angular/material/form-field';
@@ -11,7 +11,7 @@ import {ManagementStore} from '../../../../application/management-store';
 @Component({
   selector: 'app-property-detail',
   imports: [
-    MatButtonModule, MatTableModule, MatError, MatProgressSpinner, MatIcon,
+    RouterLink, MatButtonModule, MatTableModule, MatError, MatProgressSpinner, MatIcon,
   ],
   templateUrl: './property-detail.html',
   styleUrl: './property-detail.css',
@@ -25,6 +25,9 @@ export class PropertyDetail {
   readonly property = computed(() => this.store.getPropertyById(this.propertyId())());
 
   readonly selectedSpaceId = signal<number | null>(null);
+
+  /** Whether the current store error is the device-limit business rule (backend message). */
+  readonly isDeviceLimitError = computed(() => this.store.error()?.includes('plan allows a maximum') ?? false);
 
   displayedColumns = ['id', 'name', 'type', 'brand', 'powerWatts', 'status', 'actions'];
 

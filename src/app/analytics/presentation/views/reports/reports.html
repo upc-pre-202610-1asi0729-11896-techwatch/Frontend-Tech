@@ -15,17 +15,24 @@
 </mat-form-field>
 
 @if (session.selectedPropertyId()) {
-  <form [formGroup]="form" (ngSubmit)="generate()" class="generate-form">
-    <mat-form-field appearance="outline">
-      <mat-label>Start date</mat-label>
-      <input matInput type="date" formControlName="startDate">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>End date</mat-label>
-      <input matInput type="date" formControlName="endDate">
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Generate Report</button>
-  </form>
+  @if (subscriptionStore.hasFeature('customReports')) {
+    <form [formGroup]="form" (ngSubmit)="generate()" class="generate-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Start date</mat-label>
+        <input matInput type="date" formControlName="startDate">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>End date</mat-label>
+        <input matInput type="date" formControlName="endDate">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Generate Report</button>
+    </form>
+  } @else {
+    <div class="upgrade-hint">
+      <p>Generating custom reports is a Premium feature.</p>
+      <a mat-stroked-button color="primary" routerLink="/subscription">Upgrade plan</a>
+    </div>
+  }
 }
 
 @if (store.loading()) {

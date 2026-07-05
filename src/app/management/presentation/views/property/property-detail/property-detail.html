@@ -45,6 +45,11 @@
       }
       @if (store.error()) {
         <mat-error>{{ store.error() }}</mat-error>
+        @if (isDeviceLimitError()) {
+          <p class="upgrade-hint">
+            <a routerLink="/subscription">Upgrade your plan</a> to register more devices.
+          </p>
+        }
       }
 
       <table mat-table [dataSource]="store.devices()" class="mat-elevation-z4 devices-table">

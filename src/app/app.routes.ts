@@ -7,6 +7,7 @@ const managementRoutes = () => import('./management/presentation/management-rout
 const simulationRoutes = () => import('./simulation/presentation/simulation-routes').then(m => m.simulationRoutes);
 const analyticsRoutes = () => import('./analytics/presentation/analytics.routes').then(m => m.analyticsRoutes);
 const profileRoutes = () => import('./profiles/presentation/profile-routes').then(m => m.profileRoutes);
+const subscriptionRoutes = () => import('./subscriptions/presentation/subscription-routes').then(m => m.subscriptionRoutes);
 const mainLayout = () => import('./shared/presentation/layout/main-layout/main-layout').then(m => m.MainLayout);
 
 export const routes: Routes = [
@@ -20,6 +21,7 @@ export const routes: Routes = [
       { path: 'simulation', loadChildren: simulationRoutes },
       { path: 'analytics', loadChildren: analyticsRoutes },
       { path: 'profile', loadChildren: profileRoutes },
+      { path: 'subscription', loadChildren: subscriptionRoutes },
       { path: '', redirectTo: 'management/properties', pathMatch: 'full' },
     ],
   },

@@ -28,6 +28,24 @@
   margin-bottom: 24px;
 }
 
+.upgrade-hint {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+}
+
+.upgrade-hint p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #3730a3;
+  flex: 1;
+}
+
 .report-panel {
   margin-bottom: 12px;
 }
