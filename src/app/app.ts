@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import {  MainLayout} from './shared/presentation/layout/main-layout/main-layout';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [MainLayout],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('frontend-techwatch');
 }
