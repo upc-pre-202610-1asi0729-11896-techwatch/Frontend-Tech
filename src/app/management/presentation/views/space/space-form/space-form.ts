@@ -5,12 +5,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {ManagementStore} from '../../../../application/management-store';
 
 @Component({
   selector: 'app-space-form',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './space-form.html',
   styleUrl: './space-form.css',
 })

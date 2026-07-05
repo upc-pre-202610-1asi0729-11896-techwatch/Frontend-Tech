@@ -6,6 +6,7 @@ import {MatFormFieldModule, MatError} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {AuthStore} from '../../../application/auth-store';
 
@@ -13,7 +14,7 @@ import {AuthStore} from '../../../application/auth-store';
   selector: 'app-register',
   imports: [
     ReactiveFormsModule, RouterLink,
-    MatFormFieldModule, MatError, MatInputModule, MatButtonModule, MatProgressSpinner,
+    MatFormFieldModule, MatError, MatInputModule, MatButtonModule, MatProgressSpinner, TranslatePipe,
   ],
   templateUrl: './register.html',
   styleUrl: './register.css',

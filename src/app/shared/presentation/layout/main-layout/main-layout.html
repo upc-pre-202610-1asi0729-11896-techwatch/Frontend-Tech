@@ -5,36 +5,47 @@
     </div>
 
     <div class="sidebar-nav">
-      <p class="nav-section-label">Workspace</p>
+      <p class="nav-section-label">{{ 'nav.workspace' | translate }}</p>
       <a class="nav-link" routerLink="/management/properties" routerLinkActive="active">
         <mat-icon class="nav-icon">home_work</mat-icon>
-        <span>Properties</span>
+        <span>{{ 'nav.properties' | translate }}</span>
       </a>
       <a class="nav-link" routerLink="/simulation" routerLinkActive="active">
         <mat-icon class="nav-icon">play_circle</mat-icon>
-        <span>Simulation</span>
+        <span>{{ 'nav.simulation' | translate }}</span>
       </a>
       <a class="nav-link" routerLink="/analytics/dashboard" routerLinkActive="active">
         <mat-icon class="nav-icon">bar_chart</mat-icon>
-        <span>Dashboard</span>
+        <span>{{ 'nav.dashboard' | translate }}</span>
       </a>
       <a class="nav-link" routerLink="/analytics/alerts" routerLinkActive="active">
         <mat-icon class="nav-icon">notifications</mat-icon>
-        <span>Alerts</span>
+        <span>{{ 'nav.alerts' | translate }}</span>
       </a>
       <a class="nav-link" routerLink="/analytics/reports" routerLinkActive="active">
         <mat-icon class="nav-icon">description</mat-icon>
-        <span>Reports</span>
+        <span>{{ 'nav.reports' | translate }}</span>
       </a>
 
-      <p class="nav-section-label">Account</p>
+      <p class="nav-section-label">{{ 'nav.account' | translate }}</p>
       <a class="nav-link" routerLink="/subscription" routerLinkActive="active">
         <mat-icon class="nav-icon">workspace_premium</mat-icon>
-        <span>Subscription</span>
+        <span>{{ 'nav.subscription' | translate }}</span>
       </a>
     </div>
 
     <div class="sidebar-footer">
+      <div class="language-switch" role="group" aria-label="Language">
+        @for (lang of languages; track lang) {
+          <button
+            class="language-option"
+            [class.selected]="languageStore.language() === lang"
+            (click)="languageStore.setLanguage(lang)">
+            {{ lang | uppercase }}
+          </button>
+        }
+      </div>
+
       <button class="user-menu-trigger" [matMenuTriggerFor]="userMenu">
         <mat-icon class="user-icon">account_circle</mat-icon>
         <span class="user-email">{{ authStore.email() }}</span>
@@ -43,11 +54,11 @@
       <mat-menu #userMenu="matMenu">
         <a mat-menu-item routerLink="/profile">
           <mat-icon>person</mat-icon>
-          <span>My Profile</span>
+          <span>{{ 'nav.myProfile' | translate }}</span>
         </a>
         <button mat-menu-item (click)="logout()">
           <mat-icon>logout</mat-icon>
-          <span>Sign out</span>
+          <span>{{ 'nav.signOut' | translate }}</span>
         </button>
       </mat-menu>
     </div>

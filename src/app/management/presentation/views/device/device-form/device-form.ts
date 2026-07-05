@@ -1,5 +1,4 @@
 import {Component, effect, inject} from '@angular/core';
-import {TitleCasePipe} from '@angular/common';
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -7,13 +6,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {ManagementStore} from '../../../../application/management-store';
 import {DeviceEntity, DeviceType} from '../../../../domain/models/device/device-entity';
 
 @Component({
   selector: 'app-device-form',
-  imports: [TitleCasePipe, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './device-form.html',
   styleUrl: './device-form.css',
 })

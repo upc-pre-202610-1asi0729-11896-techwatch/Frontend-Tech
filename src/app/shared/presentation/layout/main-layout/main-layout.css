@@ -93,6 +93,37 @@
   padding: 8px;
 }
 
+.language-switch {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 4px;
+}
+
+.language-option {
+  flex: 1;
+  padding: 5px 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.language-option:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.language-option.selected {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
 .user-menu-trigger {
   display: flex;
   align-items: center;

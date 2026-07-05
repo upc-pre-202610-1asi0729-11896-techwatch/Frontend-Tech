@@ -1,7 +1,7 @@
 <div class="page-header">
   <div>
-    <h2 class="page-title">My Profile</h2>
-    <p class="page-subtitle">Manage your personal information and preferences.</p>
+    <h2 class="page-title">{{ 'profile.title' | translate }}</h2>
+    <p class="page-subtitle">{{ 'profile.subtitle' | translate }}</p>
   </div>
 </div>
 
@@ -27,44 +27,44 @@
         </div>
       </div>
 
-      <h3 class="card-title">Personal information</h3>
+      <h3 class="card-title">{{ 'profile.personalInfo' | translate }}</h3>
       <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
         <div class="name-row">
           <mat-form-field appearance="outline" class="full-width">
-            <mat-label>First name</mat-label>
+            <mat-label>{{ 'profile.firstNameLabel' | translate }}</mat-label>
             <input matInput formControlName="firstName">
             @if (profileForm.get('firstName')!.touched && profileForm.get('firstName')!.hasError('required')) {
-              <mat-error>Required</mat-error>
+              <mat-error>{{ 'profile.required' | translate }}</mat-error>
             }
           </mat-form-field>
           <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Last name</mat-label>
+            <mat-label>{{ 'profile.lastNameLabel' | translate }}</mat-label>
             <input matInput formControlName="lastName">
             @if (profileForm.get('lastName')!.touched && profileForm.get('lastName')!.hasError('required')) {
-              <mat-error>Required</mat-error>
+              <mat-error>{{ 'profile.required' | translate }}</mat-error>
             }
           </mat-form-field>
         </div>
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Phone number</mat-label>
+          <mat-label>{{ 'profile.phoneLabel' | translate }}</mat-label>
           <input matInput formControlName="phoneNumber">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Profile image URL</mat-label>
+          <mat-label>{{ 'profile.imageUrlLabel' | translate }}</mat-label>
           <input matInput formControlName="profileImageUrl">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">Save profile</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">{{ 'profile.saveProfile' | translate }}</button>
       </form>
     </section>
 
     <section class="card">
-      <h3 class="card-title">Preferences</h3>
+      <h3 class="card-title">{{ 'profile.preferencesTitle' | translate }}</h3>
       <form [formGroup]="preferencesForm" (ngSubmit)="savePreferences()">
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Language</mat-label>
+          <mat-label>{{ 'profile.languageLabel' | translate }}</mat-label>
           <mat-select formControlName="language">
             @for (lang of languages; track lang.value) {
               <mat-option [value]="lang.value">{{ lang.label }}</mat-option>
@@ -73,22 +73,22 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Theme</mat-label>
+          <mat-label>{{ 'profile.themeLabel' | translate }}</mat-label>
           <mat-select formControlName="theme">
-            @for (t of themes; track t.value) {
-              <mat-option [value]="t.value">{{ t.label }}</mat-option>
+            @for (t of themes; track t) {
+              <mat-option [value]="t">{{ 'themes.' + t | translate }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
 
         <div class="toggle-row">
-          <mat-slide-toggle formControlName="notificationsEnabled">Enable notifications</mat-slide-toggle>
+          <mat-slide-toggle formControlName="notificationsEnabled">{{ 'profile.notificationsLabel' | translate }}</mat-slide-toggle>
         </div>
 
-        <button mat-raised-button color="primary" type="submit">Save preferences</button>
+        <button mat-raised-button color="primary" type="submit">{{ 'profile.savePreferences' | translate }}</button>
       </form>
     </section>
   </div>
 } @else if (!store.loading()) {
-  <p class="empty">No profile found for your account.</p>
+  <p class="empty">{{ 'profile.noProfile' | translate }}</p>
 }

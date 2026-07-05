@@ -1,7 +1,7 @@
 <div class="page-header">
   <div>
-    <h2 class="page-title">Subscription</h2>
-    <p class="page-subtitle">Manage your plan, billing and payment history.</p>
+    <h2 class="page-title">{{ 'subscription.title' | translate }}</h2>
+    <p class="page-subtitle">{{ 'subscription.subtitle' | translate }}</p>
   </div>
 </div>
 
@@ -15,22 +15,23 @@
 <section class="card current-plan-card">
   <div class="current-plan-header">
     <div>
-      <p class="current-plan-label">Current plan</p>
+      <p class="current-plan-label">{{ 'subscription.currentPlanLabel' | translate }}</p>
       <p class="current-plan-name">{{ store.effectivePlan()?.name ?? '—' }}</p>
       @if (store.subscription(); as subscription) {
         <p class="current-plan-meta">
-          Status: {{ subscription.status }} · Renews: {{ subscription.autoRenew ? 'Automatically' : 'Manually' }}
-          · Ends {{ subscription.endDate | date:'mediumDate' }}
+          {{ 'subscription.status' | translate }}: {{ 'subscriptionStatuses.' + subscription.status | translate }}
+          · {{ 'subscription.renews' | translate }}: {{ (subscription.autoRenew ? 'subscription.renewsAuto' : 'subscription.renewsManual') | translate }}
+          · {{ 'subscription.ends' | translate }} {{ subscription.endDate | date:'mediumDate' }}
         </p>
       } @else {
-        <p class="current-plan-meta">No active subscription — you're using the Free plan.</p>
+        <p class="current-plan-meta">{{ 'subscription.noActiveSubscription' | translate }}</p>
       }
     </div>
 
     @if (store.subscription()?.status === 'ACTIVE') {
       <div class="current-plan-actions">
-        <button mat-stroked-button (click)="toggleRenewForm()">Renew</button>
-        <button mat-stroked-button color="warn" (click)="cancel()">Cancel</button>
+        <button mat-stroked-button (click)="toggleRenewForm()">{{ 'subscription.renewButton' | translate }}</button>
+        <button mat-stroked-button color="warn" (click)="cancel()">{{ 'subscription.cancelButton' | translate }}</button>
       </div>
     }
   </div>
@@ -38,74 +39,74 @@
   @if (showRenewForm()) {
     <form [formGroup]="renewForm" (ngSubmit)="renew()" class="renew-form">
       <mat-form-field appearance="outline">
-        <mat-label>Months to renew</mat-label>
+        <mat-label>{{ 'subscription.monthsToRenew' | translate }}</mat-label>
         <input matInput type="number" formControlName="months">
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit" [disabled]="renewForm.invalid">Confirm renewal</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="renewForm.invalid">{{ 'subscription.confirmRenewal' | translate }}</button>
     </form>
   }
 </section>
 
-<h3 class="section-title">Available plans</h3>
+<h3 class="section-title">{{ 'subscription.availablePlans' | translate }}</h3>
 <div class="plans-grid">
   @for (plan of store.plans(); track plan.id) {
     <section class="card plan-card" [class.plan-card-current]="isCurrentPlan(plan)">
       <p class="plan-name">{{ plan.name }}</p>
       <p class="plan-price">
         @if (plan.priceAmount === 0) {
-          Free
+          {{ 'subscription.free' | translate }}
         } @else {
-          {{ plan.priceAmount }} {{ plan.priceCurrency }} <span class="plan-cycle">/ {{ plan.billingCycle | lowercase }}</span>
+          {{ plan.priceAmount }} {{ plan.priceCurrency }} <span class="plan-cycle">/ {{ 'billingCycles.' + plan.billingCycle | translate }}</span>
         }
       </p>
 
       <ul class="plan-features">
-        <li>Up to {{ plan.maxDevices }} devices</li>
+        <li>{{ 'subscription.devicesUpTo' | translate:{count: plan.maxDevices} }}</li>
         <li [class.feature-off]="!plan.hasAdvancedMetrics">
           <mat-icon class="feature-icon">{{ plan.hasAdvancedMetrics ? 'check' : 'close' }}</mat-icon>
-          Advanced metrics
+          {{ 'subscription.advancedMetrics' | translate }}
         </li>
         <li [class.feature-off]="!plan.hasCustomReports">
           <mat-icon class="feature-icon">{{ plan.hasCustomReports ? 'check' : 'close' }}</mat-icon>
-          Custom reports
+          {{ 'subscription.customReports' | translate }}
         </li>
         <li [class.feature-off]="!plan.hasAlerts">
           <mat-icon class="feature-icon">{{ plan.hasAlerts ? 'check' : 'close' }}</mat-icon>
-          Consumption alerts
+          {{ 'subscription.alertsFeature' | translate }}
         </li>
         <li [class.feature-off]="!plan.hasUnlimitedHistory">
           <mat-icon class="feature-icon">{{ plan.hasUnlimitedHistory ? 'check' : 'close' }}</mat-icon>
-          Unlimited history
+          {{ 'subscription.unlimitedHistory' | translate }}
         </li>
       </ul>
 
       @if (isCurrentPlan(plan)) {
-        <span class="current-badge">Current plan</span>
+        <span class="current-badge">{{ 'subscription.currentPlanBadge' | translate }}</span>
       } @else if (store.subscription()) {
-        <button mat-stroked-button class="full-width" (click)="switchTo(plan.id)">Switch to this plan</button>
+        <button mat-stroked-button class="full-width" (click)="switchTo(plan.id)">{{ 'subscription.switchPlan' | translate }}</button>
       } @else {
-        <button mat-raised-button color="primary" class="full-width" (click)="subscribe(plan.id)">Subscribe</button>
+        <button mat-raised-button color="primary" class="full-width" (click)="subscribe(plan.id)">{{ 'subscription.subscribeButton' | translate }}</button>
       }
     </section>
   }
 </div>
 
 @if (store.payments().length > 0) {
-  <h3 class="section-title">Payment history</h3>
+  <h3 class="section-title">{{ 'subscription.paymentHistory' | translate }}</h3>
   <table mat-table [dataSource]="store.payments()" class="mat-elevation-z4 payments-table">
     <ng-container matColumnDef="processedAt">
-      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <th mat-header-cell *matHeaderCellDef>{{ 'subscription.columnDate' | translate }}</th>
       <td mat-cell *matCellDef="let payment">{{ payment.processedAt | date:'medium' }}</td>
     </ng-container>
     <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef>Amount</th>
+      <th mat-header-cell *matHeaderCellDef>{{ 'subscription.columnAmount' | translate }}</th>
       <td mat-cell *matCellDef="let payment">{{ payment.amount }} {{ payment.currency }}</td>
     </ng-container>
     <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <th mat-header-cell *matHeaderCellDef>{{ 'subscription.columnStatus' | translate }}</th>
       <td mat-cell *matCellDef="let payment">
         <span class="payment-status" [class.status-completed]="payment.status === 'COMPLETED'" [class.status-failed]="payment.status === 'FAILED'">
-          {{ payment.status }}
+          {{ 'paymentStatuses.' + payment.status | translate }}
         </span>
       </td>
     </ng-container>

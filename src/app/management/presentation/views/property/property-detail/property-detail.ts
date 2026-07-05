@@ -5,13 +5,14 @@ import {MatTableModule} from '@angular/material/table';
 import {MatError} from '@angular/material/form-field';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import {MatIcon} from '@angular/material/icon';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {ManagementStore} from '../../../../application/management-store';
 
 @Component({
   selector: 'app-property-detail',
   imports: [
-    RouterLink, MatButtonModule, MatTableModule, MatError, MatProgressSpinner, MatIcon,
+    RouterLink, MatButtonModule, MatTableModule, MatError, MatProgressSpinner, MatIcon, TranslatePipe,
   ],
   templateUrl: './property-detail.html',
   styleUrl: './property-detail.css',

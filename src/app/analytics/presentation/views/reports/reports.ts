@@ -9,6 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {AnalyticsStore} from '../../../application/analytics.store';
 import {ManagementStore} from '../../../../management/application/management-store';
@@ -19,7 +20,7 @@ import {SubscriptionStore} from '../../../../subscriptions/application/subscript
   selector: 'app-reports',
   imports: [
     DatePipe, RouterLink, ReactiveFormsModule, MatFormFieldModule, MatError, MatSelectModule,
-    MatInputModule, MatButtonModule, MatExpansionModule, MatTableModule, MatProgressSpinner,
+    MatInputModule, MatButtonModule, MatExpansionModule, MatTableModule, MatProgressSpinner, TranslatePipe,
   ],
   templateUrl: './reports.html',
   styleUrl: './reports.css',

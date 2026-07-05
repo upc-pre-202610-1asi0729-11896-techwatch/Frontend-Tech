@@ -7,15 +7,17 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {ProfileStore} from '../../../application/profile-store';
 import {AuthStore} from '../../../../iam/application/auth-store';
+import {LanguageStore} from '../../../../shared/application/language-store';
 
 @Component({
   selector: 'app-profile',
   imports: [
     ReactiveFormsModule, MatFormFieldModule, MatError, MatInputModule,
-    MatSelectModule, MatSlideToggleModule, MatButtonModule, MatProgressSpinner,
+    MatSelectModule, MatSlideToggleModule, MatButtonModule, MatProgressSpinner, TranslatePipe,
   ],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
@@ -23,16 +25,15 @@ import {AuthStore} from '../../../../iam/application/auth-store';
 export class Profile {
   readonly store = inject(ProfileStore);
   readonly authStore = inject(AuthStore);
+  private readonly languageStore = inject(LanguageStore);
   private fb = inject(FormBuilder);
 
+  /** Language names are shown in their own language, so they are not translated. */
   readonly languages = [
     {value: 'en', label: 'English'},
     {value: 'es', label: 'Español'},
   ];
-  readonly themes = [
-    {value: 'light', label: 'Light'},
-    {value: 'dark', label: 'Dark'},
-  ];
+  readonly themes = ['light', 'dark'] as const;
 
   profileForm = this.fb.group({
     firstName: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
@@ -73,5 +74,6 @@ export class Profile {
   savePreferences(): void {
     const value = this.preferencesForm.getRawValue();
     this.store.updatePreferences(value.language, value.theme, value.notificationsEnabled);
+    this.languageStore.setLanguage(value.language);
   }
 }

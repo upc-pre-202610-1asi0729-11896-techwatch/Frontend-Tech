@@ -1,5 +1,5 @@
 import {Component, inject, signal} from '@angular/core';
-import {DatePipe, LowerCasePipe} from '@angular/common';
+import {DatePipe} from '@angular/common';
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -8,6 +8,7 @@ import {MatFormFieldModule, MatError} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {SubscriptionStore} from '../../../application/subscription-store';
 import {PlanEntity} from '../../../domain/model/plan-entity';
@@ -15,8 +16,8 @@ import {PlanEntity} from '../../../domain/model/plan-entity';
 @Component({
   selector: 'app-subscription',
   imports: [
-    DatePipe, LowerCasePipe, ReactiveFormsModule, MatButtonModule, MatIconModule,
-    MatFormFieldModule, MatError, MatInputModule, MatTableModule, MatProgressSpinner,
+    DatePipe, ReactiveFormsModule, MatButtonModule, MatIconModule,
+    MatFormFieldModule, MatError, MatInputModule, MatTableModule, MatProgressSpinner, TranslatePipe,
   ],
   templateUrl: './subscription.html',
   styleUrl: './subscription.css',
