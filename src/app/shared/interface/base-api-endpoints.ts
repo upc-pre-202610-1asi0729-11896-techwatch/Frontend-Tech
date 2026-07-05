@@ -5,7 +5,7 @@ import {BaseEntity} from './base-entity';
 import {BaseResource} from './base-resource';
 import {BaseResponse} from './base-response';
 import {BaseAssembler} from './base-assembler';
-import {resource} from '@angular/core';
+import {toFriendlyError} from '../infrastructure/http-error';
 
 export class BaseApiEndpoints<
   Tentity extends BaseEntity,
@@ -62,17 +62,7 @@ export class BaseApiEndpoints<
   }
 
   protected handleError(operation: string){
-    return (errors: HttpErrorResponse): Observable<never> => {
-      let errorMessage = operation;
-      if(errors.status === 404){
-        errorMessage = `${operation} : Resource not found`;
-      } else if(errors.error instanceof ErrorEvent){
-        errorMessage = `${operation} : ${errors.error.message}`;
-      } else {
-        errorMessage = `${operation} : ${errors.statusText || 'Unexpected error'}`;
-      }
-      return throwError(()=>new Error(errorMessage));
-    };
+    return (errors: HttpErrorResponse): Observable<never> => throwError(() => toFriendlyError(operation, errors));
   }
 }
 

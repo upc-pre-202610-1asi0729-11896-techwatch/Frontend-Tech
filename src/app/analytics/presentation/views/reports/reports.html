@@ -1,12 +1,12 @@
 <div class="page-header">
   <div>
-    <h2 class="page-title">Reports</h2>
-    <p class="page-subtitle">Generate and review consumption reports per property.</p>
+    <h2 class="page-title">{{ 'analytics.reports.title' | translate }}</h2>
+    <p class="page-subtitle">{{ 'analytics.reports.subtitle' | translate }}</p>
   </div>
 </div>
 
 <mat-form-field appearance="outline" class="property-select">
-  <mat-label>Property</mat-label>
+  <mat-label>{{ 'analytics.reports.propertyLabel' | translate }}</mat-label>
   <mat-select [value]="session.selectedPropertyId()" (selectionChange)="selectProperty($event.value)">
     @for (property of managementStore.properties(); track property.id) {
       <mat-option [value]="property.id">{{ property.name }}</mat-option>
@@ -15,17 +15,24 @@
 </mat-form-field>
 
 @if (session.selectedPropertyId()) {
-  <form [formGroup]="form" (ngSubmit)="generate()" class="generate-form">
-    <mat-form-field appearance="outline">
-      <mat-label>Start date</mat-label>
-      <input matInput type="date" formControlName="startDate">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>End date</mat-label>
-      <input matInput type="date" formControlName="endDate">
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Generate Report</button>
-  </form>
+  @if (subscriptionStore.hasFeature('customReports')) {
+    <form [formGroup]="form" (ngSubmit)="generate()" class="generate-form">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'analytics.reports.startDateLabel' | translate }}</mat-label>
+        <input matInput type="date" formControlName="startDate">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'analytics.reports.endDateLabel' | translate }}</mat-label>
+        <input matInput type="date" formControlName="endDate">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">{{ 'analytics.reports.generate' | translate }}</button>
+    </form>
+  } @else {
+    <div class="upgrade-hint">
+      <p>{{ 'analytics.reports.upgradeMessage' | translate }}</p>
+      <a mat-stroked-button color="primary" routerLink="/subscription">{{ 'analytics.reports.upgradeButton' | translate }}</a>
+    </div>
+  }
 }
 
 @if (store.loading()) {
@@ -42,21 +49,21 @@
         {{ report.periodStart | date:'mediumDate' }} — {{ report.periodEnd | date:'mediumDate' }}
       </mat-panel-title>
       <mat-panel-description>
-        {{ report.totalConsumption }} {{ report.unit }} · {{ report.items.length }} devices
+        {{ report.totalConsumption }} {{ report.unit }} · {{ 'analytics.reports.devicesCount' | translate:{count: report.items.length} }}
       </mat-panel-description>
     </mat-expansion-panel-header>
 
     <table mat-table [dataSource]="report.items" class="items-table">
       <ng-container matColumnDef="deviceName">
-        <th mat-header-cell *matHeaderCellDef>Device</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'analytics.reports.columnDevice' | translate }}</th>
         <td mat-cell *matCellDef="let item">{{ item.deviceName }}</td>
       </ng-container>
       <ng-container matColumnDef="consumption">
-        <th mat-header-cell *matHeaderCellDef>Consumption</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'analytics.reports.columnConsumption' | translate }}</th>
         <td mat-cell *matCellDef="let item">{{ item.consumption }} {{ item.unit }}</td>
       </ng-container>
       <ng-container matColumnDef="usageFrequency">
-        <th mat-header-cell *matHeaderCellDef>Records</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'analytics.reports.columnRecords' | translate }}</th>
         <td mat-cell *matCellDef="let item">{{ item.usageFrequency }}</td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="itemColumns"></tr>
@@ -65,10 +72,10 @@
   </mat-expansion-panel>
 } @empty {
   @if (session.selectedPropertyId() && !store.loading()) {
-    <p class="empty">No reports yet for this property.</p>
+    <p class="empty">{{ 'analytics.reports.noReports' | translate }}</p>
   }
 }
 
 @if (!session.selectedPropertyId()) {
-  <p class="empty">Select a property to generate and view reports.</p>
+  <p class="empty">{{ 'analytics.reports.selectProperty' | translate }}</p>
 }

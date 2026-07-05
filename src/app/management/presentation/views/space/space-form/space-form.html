@@ -1,23 +1,23 @@
 <div class="form-container">
-  <h2 class="form-title">New Space</h2>
+  <h2 class="form-title">{{ 'management.spaceForm.title' | translate }}</h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name" placeholder="e.g. Living Room">
+      <mat-label>{{ 'management.spaceForm.nameLabel' | translate }}</mat-label>
+      <input matInput formControlName="name" [placeholder]="'management.spaceForm.namePlaceholder' | translate">
       @if (form.get('name')!.touched && form.get('name')!.hasError('required')) {
-        <mat-error>Name is required</mat-error>
+        <mat-error>{{ 'management.spaceForm.nameRequired' | translate }}</mat-error>
       }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Description</mat-label>
-      <input matInput formControlName="description" placeholder="e.g. Main floor living room">
+      <mat-label>{{ 'management.spaceForm.descriptionLabel' | translate }}</mat-label>
+      <input matInput formControlName="description" [placeholder]="'management.spaceForm.descriptionPlaceholder' | translate">
     </mat-form-field>
 
     <div class="form-actions">
-      <button mat-stroked-button type="button" (click)="back()">Cancel</button>
-      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Create</button>
+      <button mat-stroked-button type="button" (click)="back()">{{ 'management.spaceForm.cancel' | translate }}</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">{{ 'management.spaceForm.create' | translate }}</button>
     </div>
   </form>
 </div>

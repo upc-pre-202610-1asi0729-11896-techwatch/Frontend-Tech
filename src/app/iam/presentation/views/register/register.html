@@ -1,0 +1,64 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <img src="/imagotipo.jpeg" alt="TechWatch" class="auth-logo">
+
+    <h1 class="auth-title">{{ 'auth.register.title' | translate }}</h1>
+    <p class="auth-subtitle">{{ 'auth.register.subtitle' | translate }}</p>
+
+    @if (store.error()) {
+      <p class="auth-banner auth-banner-error" role="alert">{{ store.error() }}</p>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="name-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'auth.register.firstNameLabel' | translate }}</mat-label>
+          <input matInput formControlName="firstName" autocomplete="given-name" required>
+          @if (form.get('firstName')!.touched && form.get('firstName')!.hasError('required')) {
+            <mat-error>{{ 'auth.register.required' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'auth.register.lastNameLabel' | translate }}</mat-label>
+          <input matInput formControlName="lastName" autocomplete="family-name" required>
+          @if (form.get('lastName')!.touched && form.get('lastName')!.hasError('required')) {
+            <mat-error>{{ 'auth.register.required' | translate }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'auth.register.emailLabel' | translate }}</mat-label>
+        <input matInput type="email" formControlName="email" autocomplete="email" required>
+        @if (form.get('email')!.touched && form.get('email')!.hasError('required')) {
+          <mat-error>{{ 'auth.register.emailRequired' | translate }}</mat-error>
+        }
+        @if (form.get('email')!.touched && form.get('email')!.hasError('email')) {
+          <mat-error>{{ 'auth.register.emailInvalid' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'auth.register.passwordLabel' | translate }}</mat-label>
+        <input matInput type="password" formControlName="password" autocomplete="new-password" required>
+        @if (form.get('password')!.touched && form.get('password')!.hasError('required')) {
+          <mat-error>{{ 'auth.register.passwordRequired' | translate }}</mat-error>
+        }
+        @if (form.get('password')!.touched && form.get('password')!.hasError('minlength')) {
+          <mat-error>{{ 'auth.register.passwordMinLength' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" class="full-width auth-submit" [disabled]="form.invalid || store.loading()">
+        @if (store.loading()) {
+          <mat-spinner diameter="20" class="auth-spinner"></mat-spinner>
+        } @else {
+          {{ 'auth.register.submit' | translate }}
+        }
+      </button>
+    </form>
+
+    <p class="auth-footer">{{ 'auth.register.haveAccount' | translate }} <a routerLink="/auth/login">{{ 'auth.register.signIn' | translate }}</a></p>
+  </div>
+</div>

@@ -1,0 +1,275 @@
+{
+  "common": {
+    "deviceFallback": "Dispositivo n.º {{id}}"
+  },
+  "nav": {
+    "workspace": "Espacio de trabajo",
+    "properties": "Propiedades",
+    "simulation": "Simulación",
+    "dashboard": "Panel",
+    "alerts": "Alertas",
+    "reports": "Reportes",
+    "account": "Cuenta",
+    "subscription": "Suscripción",
+    "myProfile": "Mi perfil",
+    "signOut": "Cerrar sesión"
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Monitorea y controla el consumo energético de tu hogar.",
+      "registeredBanner": "Cuenta creada. Inicia sesión para continuar.",
+      "emailLabel": "Correo electrónico",
+      "emailRequired": "El correo electrónico es obligatorio",
+      "emailInvalid": "Ingresa un correo válido",
+      "passwordLabel": "Contraseña",
+      "passwordRequired": "La contraseña es obligatoria",
+      "submit": "Iniciar sesión",
+      "noAccount": "¿No tienes una cuenta?",
+      "createOne": "Crea una"
+    },
+    "register": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Empieza a monitorear el consumo energético de tus propiedades.",
+      "firstNameLabel": "Nombre",
+      "lastNameLabel": "Apellido",
+      "required": "Obligatorio",
+      "emailLabel": "Correo electrónico",
+      "emailRequired": "El correo electrónico es obligatorio",
+      "emailInvalid": "Ingresa un correo válido",
+      "passwordLabel": "Contraseña",
+      "passwordRequired": "La contraseña es obligatoria",
+      "passwordMinLength": "Al menos 8 caracteres",
+      "submit": "Crear cuenta",
+      "haveAccount": "¿Ya tienes una cuenta?",
+      "signIn": "Inicia sesión"
+    }
+  },
+  "management": {
+    "property": {
+      "pageTitle": "Propiedades",
+      "pageSubtitle": "Casas y departamentos registrados en tu cuenta.",
+      "addButton": "Agregar propiedad",
+      "columnId": "ID",
+      "columnName": "Nombre",
+      "columnAddress": "Dirección",
+      "columnType": "Tipo",
+      "columnSpaces": "Espacios",
+      "columnActions": "Acciones"
+    },
+    "propertyForm": {
+      "title": "Nueva propiedad",
+      "nameLabel": "Nombre",
+      "namePlaceholder": "p. ej. Mi Casa",
+      "nameRequired": "El nombre es obligatorio",
+      "addressLabel": "Dirección",
+      "addressPlaceholder": "p. ej. Av. Siempre Viva 742",
+      "addressRequired": "La dirección es obligatoria",
+      "typeLabel": "Tipo",
+      "typeRequired": "El tipo es obligatorio",
+      "cancel": "Cancelar",
+      "create": "Crear"
+    },
+    "propertyTypes": {
+      "HOUSE": "Casa",
+      "APARTMENT": "Departamento"
+    },
+    "propertyDetail": {
+      "back": "Propiedades",
+      "loading": "Cargando propiedad…",
+      "spacesTitle": "Espacios",
+      "addSpace": "Agregar espacio",
+      "noSpaces": "Aún no hay espacios. Agrega uno para empezar a registrar dispositivos.",
+      "devicesTitle": "Dispositivos",
+      "addDevice": "Agregar dispositivo",
+      "noDevices": "Aún no hay dispositivos en este espacio.",
+      "columnBrand": "Marca / Modelo",
+      "columnPower": "Potencia (W)",
+      "columnStatus": "Estado",
+      "statusOn": "Encendido",
+      "statusOff": "Apagado",
+      "upgradeHint": "Mejora tu plan para registrar más dispositivos."
+    },
+    "spaceForm": {
+      "title": "Nuevo espacio",
+      "nameLabel": "Nombre",
+      "namePlaceholder": "p. ej. Sala",
+      "nameRequired": "El nombre es obligatorio",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "p. ej. Sala principal del primer piso",
+      "cancel": "Cancelar",
+      "create": "Crear"
+    },
+    "deviceForm": {
+      "editTitle": "Editar dispositivo",
+      "newTitle": "Nuevo dispositivo",
+      "nameLabel": "Nombre",
+      "namePlaceholder": "p. ej. Luz de techo",
+      "nameRequired": "El nombre es obligatorio",
+      "brandLabel": "Marca",
+      "brandPlaceholder": "p. ej. Philips",
+      "modelLabel": "Modelo",
+      "modelPlaceholder": "p. ej. Hue",
+      "typeLabel": "Tipo",
+      "typeRequired": "El tipo es obligatorio",
+      "powerLabel": "Potencia (Watts)",
+      "powerRequired": "La potencia es obligatoria",
+      "cancel": "Cancelar",
+      "update": "Actualizar",
+      "create": "Crear"
+    },
+    "deviceTypes": {
+      "LIGHT": "Luz",
+      "THERMOSTAT": "Termostato",
+      "CAMERA": "Cámara",
+      "SMART_PLUG": "Enchufe inteligente",
+      "AIR_CONDITIONER": "Aire acondicionado",
+      "DOOR_LOCK": "Cerradura"
+    }
+  },
+  "simulation": {
+    "pageTitle": "Simulación",
+    "pageSubtitle": "Ejecuta una sesión de simulación y registra acciones sobre dispositivos para generar datos de uso.",
+    "endSession": "Finalizar sesión",
+    "started": "Iniciada",
+    "generated": "Wh generados",
+    "recordActionTitle": "Registrar acción de dispositivo",
+    "deviceLabel": "Dispositivo",
+    "actionLabel": "Acción",
+    "durationLabel": "Duración (min)",
+    "recordButton": "Registrar",
+    "actionsTitle": "Acciones",
+    "noActions": "Aún no se han registrado acciones.",
+    "usageTitle": "Datos de uso",
+    "noUsage": "Aún no se han generado datos de uso.",
+    "noSession": "No hay una sesión activa. Elige una propiedad e inicia una.",
+    "propertyLabel": "Propiedad",
+    "startButton": "Iniciar sesión",
+    "columnExecuted": "Ejecutada",
+    "columnDevice": "Dispositivo",
+    "columnAction": "Acción",
+    "columnRecorded": "Registrado",
+    "columnConsumption": "Consumo",
+    "propertyFallback": "Propiedad n.º {{id}}",
+    "actionTypes": {
+      "TURN_ON": "Encender",
+      "TURN_OFF": "Apagar",
+      "ADJUST": "Ajustar"
+    }
+  },
+  "analytics": {
+    "dashboard": {
+      "title": "Panel de análisis",
+      "subtitle": "Métricas de consumo energético de la propiedad seleccionada.",
+      "propertyLabel": "Propiedad",
+      "totalConsumption": "Consumo total",
+      "metricsRecorded": "Métricas registradas",
+      "dataPoints": "puntos de datos",
+      "unreadAlerts": "Alertas sin leer",
+      "forAccount": "de tu cuenta",
+      "consumptionByDevice": "Consumo por dispositivo",
+      "columnDevice": "Dispositivo",
+      "columnConsumption": "Consumo total",
+      "propertyLevel": "Nivel propiedad",
+      "noMetrics": "Aún no hay métricas. Ejecuta una simulación para generar datos de consumo.",
+      "selectProperty": "Selecciona una propiedad para ver sus métricas."
+    },
+    "alerts": {
+      "title": "Alertas",
+      "subtitle": "Alertas de consumo generadas para tu cuenta.",
+      "columnSeverity": "Severidad",
+      "columnMessage": "Mensaje",
+      "columnValue": "Valor / Umbral",
+      "columnTriggered": "Generada",
+      "columnActions": "Acciones",
+      "markAsRead": "Marcar como leída",
+      "read": "Leída",
+      "noAlerts": "Sin alertas. El consumo está dentro de los umbrales."
+    },
+    "severities": {
+      "LOW": "Baja",
+      "MEDIUM": "Media",
+      "HIGH": "Alta"
+    },
+    "reports": {
+      "title": "Reportes",
+      "subtitle": "Genera y revisa reportes de consumo por propiedad.",
+      "propertyLabel": "Propiedad",
+      "startDateLabel": "Fecha de inicio",
+      "endDateLabel": "Fecha de fin",
+      "generate": "Generar reporte",
+      "upgradeMessage": "Generar reportes personalizados es una función Premium.",
+      "upgradeButton": "Mejorar plan",
+      "noReports": "Aún no hay reportes para esta propiedad.",
+      "selectProperty": "Selecciona una propiedad para generar y ver reportes.",
+      "columnDevice": "Dispositivo",
+      "columnConsumption": "Consumo",
+      "columnRecords": "Registros",
+      "devicesCount": "{{count}} dispositivos"
+    }
+  },
+  "profile": {
+    "title": "Mi perfil",
+    "subtitle": "Administra tu información personal y preferencias.",
+    "personalInfo": "Información personal",
+    "firstNameLabel": "Nombre",
+    "lastNameLabel": "Apellido",
+    "required": "Obligatorio",
+    "phoneLabel": "Número de teléfono",
+    "imageUrlLabel": "URL de imagen de perfil",
+    "saveProfile": "Guardar perfil",
+    "preferencesTitle": "Preferencias",
+    "languageLabel": "Idioma",
+    "themeLabel": "Tema",
+    "notificationsLabel": "Habilitar notificaciones",
+    "savePreferences": "Guardar preferencias",
+    "noProfile": "No se encontró un perfil para tu cuenta."
+  },
+  "themes": {
+    "light": "Claro",
+    "dark": "Oscuro"
+  },
+  "subscription": {
+    "title": "Suscripción",
+    "subtitle": "Administra tu plan, facturación e historial de pagos.",
+    "currentPlanLabel": "Plan actual",
+    "status": "Estado",
+    "renewsAuto": "Automáticamente",
+    "renewsManual": "Manualmente",
+    "renews": "Renueva",
+    "ends": "Termina",
+    "noActiveSubscription": "No tienes una suscripción activa — estás usando el plan gratuito.",
+    "renewButton": "Renovar",
+    "cancelButton": "Cancelar",
+    "monthsToRenew": "Meses a renovar",
+    "confirmRenewal": "Confirmar renovación",
+    "availablePlans": "Planes disponibles",
+    "free": "Gratis",
+    "devicesUpTo": "Hasta {{count}} dispositivos",
+    "advancedMetrics": "Métricas avanzadas",
+    "customReports": "Reportes personalizados",
+    "alertsFeature": "Alertas de consumo",
+    "unlimitedHistory": "Historial ilimitado",
+    "currentPlanBadge": "Plan actual",
+    "switchPlan": "Cambiar a este plan",
+    "subscribeButton": "Suscribirse",
+    "paymentHistory": "Historial de pagos",
+    "columnDate": "Fecha",
+    "columnAmount": "Monto",
+    "columnStatus": "Estado"
+  },
+  "subscriptionStatuses": {
+    "ACTIVE": "Activa",
+    "CANCELLED": "Cancelada",
+    "EXPIRED": "Expirada"
+  },
+  "billingCycles": {
+    "MONTHLY": "mensual",
+    "YEARLY": "anual"
+  },
+  "paymentStatuses": {
+    "PENDING": "Pendiente",
+    "COMPLETED": "Completado",
+    "FAILED": "Fallido"
+  }
+}
