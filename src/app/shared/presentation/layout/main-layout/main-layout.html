@@ -5,6 +5,7 @@
     </div>
 
     <div class="sidebar-nav">
+      <p class="nav-section-label">Workspace</p>
       <a class="nav-link" routerLink="/management/properties" routerLinkActive="active">
         <mat-icon class="nav-icon">home_work</mat-icon>
         <span>Properties</span>
@@ -25,6 +26,12 @@
         <mat-icon class="nav-icon">description</mat-icon>
         <span>Reports</span>
       </a>
+
+      <p class="nav-section-label">Account</p>
+      <a class="nav-link" routerLink="/subscription" routerLinkActive="active">
+        <mat-icon class="nav-icon">workspace_premium</mat-icon>
+        <span>Subscription</span>
+      </a>
     </div>
 
     <div class="sidebar-footer">
@@ -34,6 +41,10 @@
         <mat-icon class="user-caret">expand_more</mat-icon>
       </button>
       <mat-menu #userMenu="matMenu">
+        <a mat-menu-item routerLink="/profile">
+          <mat-icon>person</mat-icon>
+          <span>My Profile</span>
+        </a>
         <button mat-menu-item (click)="logout()">
           <mat-icon>logout</mat-icon>
           <span>Sign out</span>
