@@ -7,6 +7,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {SimulationStore} from '../../../application/simulation-store';
 import {ManagementStore} from '../../../../management/application/management-store';
@@ -15,7 +16,7 @@ import {ManagementStore} from '../../../../management/application/management-sto
   selector: 'app-simulation',
   imports: [
     DatePipe, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatError,
-    MatSelectModule, MatInputModule, MatTableModule, MatProgressSpinner,
+    MatSelectModule, MatInputModule, MatTableModule, MatProgressSpinner, TranslatePipe,
   ],
   templateUrl: './simulation.html',
   styleUrl: './simulation.css',

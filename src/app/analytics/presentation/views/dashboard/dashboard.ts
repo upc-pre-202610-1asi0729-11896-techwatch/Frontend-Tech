@@ -3,6 +3,7 @@ import {MatFormFieldModule, MatError} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 
 import {AnalyticsStore} from '../../../application/analytics.store';
 import {ManagementStore} from '../../../../management/application/management-store';
@@ -16,7 +17,7 @@ interface DeviceConsumptionRow {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatFormFieldModule, MatError, MatSelectModule, MatTableModule, MatProgressSpinner],
+  imports: [MatFormFieldModule, MatError, MatSelectModule, MatTableModule, MatProgressSpinner, TranslatePipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -24,6 +25,7 @@ export class Dashboard {
   readonly store = inject(AnalyticsStore);
   readonly managementStore = inject(ManagementStore);
   readonly session = inject(SessionStore);
+  private readonly translateService = inject(TranslateService);
 
   displayedColumns = ['deviceName', 'totalConsumption'];
 
@@ -52,8 +54,8 @@ export class Dashboard {
   }
 
   private deviceName(deviceId: number): string {
-    if (!deviceId) return 'Property-level';
+    if (!deviceId) return this.translateService.instant('analytics.dashboard.propertyLevel');
     const device = this.managementStore.propertyDevices().find(d => d.id === deviceId);
-    return device?.name ?? `Device #${deviceId}`;
+    return device?.name ?? this.translateService.instant('common.deviceFallback', {id: deviceId});
   }
 }

@@ -1,7 +1,7 @@
 <div class="page-header">
   <div>
-    <h2 class="page-title">Simulation</h2>
-    <p class="page-subtitle">Run a simulation session and record device actions to generate usage data.</p>
+    <h2 class="page-title">{{ 'simulation.pageTitle' | translate }}</h2>
+    <p class="page-subtitle">{{ 'simulation.pageSubtitle' | translate }}</p>
   </div>
 </div>
 
@@ -17,22 +17,22 @@
     <div class="session-info">
       <span class="status-badge status-active">{{ session.status }}</span>
       <div>
-        <p class="session-property">{{ sessionProperty()?.name ?? 'Property #' + session.propertyId }}</p>
-        <p class="session-meta">Started {{ session.startedAt | date:'medium' }}</p>
+        <p class="session-property">{{ sessionProperty()?.name ?? ('simulation.propertyFallback' | translate:{id: session.propertyId}) }}</p>
+        <p class="session-meta">{{ 'simulation.started' | translate }} {{ session.startedAt | date:'medium' }}</p>
       </div>
       <div class="session-total">
         <span class="total-value">{{ session.totalConsumption }}</span>
-        <span class="total-unit">Wh generated</span>
+        <span class="total-unit">{{ 'simulation.generated' | translate }}</span>
       </div>
     </div>
-    <button mat-stroked-button color="warn" (click)="endSession()">End Session</button>
+    <button mat-stroked-button color="warn" (click)="endSession()">{{ 'simulation.endSession' | translate }}</button>
   </div>
 
   <div class="section">
-    <h3 class="section-title">Record Device Action</h3>
+    <h3 class="section-title">{{ 'simulation.recordActionTitle' | translate }}</h3>
     <form [formGroup]="actionForm" (ngSubmit)="recordAction()" class="action-form">
       <mat-form-field appearance="outline">
-        <mat-label>Device</mat-label>
+        <mat-label>{{ 'simulation.deviceLabel' | translate }}</mat-label>
         <mat-select formControlName="deviceId">
           @for (device of managementStore.propertyDevices(); track device.id) {
             <mat-option [value]="device.id">{{ device.name }}</mat-option>
@@ -41,74 +41,74 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Action</mat-label>
+        <mat-label>{{ 'simulation.actionLabel' | translate }}</mat-label>
         <mat-select formControlName="actionType">
           @for (a of actionTypes; track a) {
-            <mat-option [value]="a">{{ a }}</mat-option>
+            <mat-option [value]="a">{{ 'simulation.actionTypes.' + a | translate }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Duration (min)</mat-label>
+        <mat-label>{{ 'simulation.durationLabel' | translate }}</mat-label>
         <input matInput type="number" formControlName="durationMinutes">
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="actionForm.invalid">Record</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="actionForm.invalid">{{ 'simulation.recordButton' | translate }}</button>
     </form>
   </div>
 
   <div class="section">
-    <h3 class="section-title">Actions</h3>
+    <h3 class="section-title">{{ 'simulation.actionsTitle' | translate }}</h3>
     <table mat-table [dataSource]="session.actions" class="mat-elevation-z2 sim-table">
       <ng-container matColumnDef="executedAt">
-        <th mat-header-cell *matHeaderCellDef>Executed</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'simulation.columnExecuted' | translate }}</th>
         <td mat-cell *matCellDef="let a">{{ a.executedAt | date:'short' }}</td>
       </ng-container>
       <ng-container matColumnDef="deviceId">
-        <th mat-header-cell *matHeaderCellDef>Device</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'simulation.columnDevice' | translate }}</th>
         <td mat-cell *matCellDef="let a">#{{ a.deviceId }}</td>
       </ng-container>
       <ng-container matColumnDef="actionType">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let a">{{ a.actionType }}</td>
+        <th mat-header-cell *matHeaderCellDef>{{ 'simulation.columnAction' | translate }}</th>
+        <td mat-cell *matCellDef="let a">{{ 'simulation.actionTypes.' + a.actionType | translate }}</td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="actionColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: actionColumns;"></tr>
     </table>
     @if (session.actions.length === 0) {
-      <p class="empty">No actions recorded yet.</p>
+      <p class="empty">{{ 'simulation.noActions' | translate }}</p>
     }
   </div>
 
   <div class="section">
-    <h3 class="section-title">Usage Data</h3>
+    <h3 class="section-title">{{ 'simulation.usageTitle' | translate }}</h3>
     <table mat-table [dataSource]="session.usageData" class="mat-elevation-z2 sim-table">
       <ng-container matColumnDef="recordedAt">
-        <th mat-header-cell *matHeaderCellDef>Recorded</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'simulation.columnRecorded' | translate }}</th>
         <td mat-cell *matCellDef="let u">{{ u.recordedAt | date:'short' }}</td>
       </ng-container>
       <ng-container matColumnDef="deviceId">
-        <th mat-header-cell *matHeaderCellDef>Device</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'simulation.columnDevice' | translate }}</th>
         <td mat-cell *matCellDef="let u">#{{ u.deviceId }}</td>
       </ng-container>
       <ng-container matColumnDef="consumptionValue">
-        <th mat-header-cell *matHeaderCellDef>Consumption</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'simulation.columnConsumption' | translate }}</th>
         <td mat-cell *matCellDef="let u">{{ u.consumptionValue }} {{ u.unit }}</td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="usageColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: usageColumns;"></tr>
     </table>
     @if (session.usageData.length === 0) {
-      <p class="empty">No usage data generated yet.</p>
+      <p class="empty">{{ 'simulation.noUsage' | translate }}</p>
     }
   </div>
 } @else {
   <div class="start-card">
-    <p>No active session. Choose a property and start one.</p>
+    <p>{{ 'simulation.noSession' | translate }}</p>
     <div class="start-row">
       <mat-form-field appearance="outline">
-        <mat-label>Property</mat-label>
+        <mat-label>{{ 'simulation.propertyLabel' | translate }}</mat-label>
         <mat-select [value]="selectedPropertyId()" (selectionChange)="selectedPropertyId.set($event.value)">
           @for (property of managementStore.properties(); track property.id) {
             <mat-option [value]="property.id">{{ property.name }}</mat-option>
@@ -116,7 +116,7 @@
         </mat-select>
       </mat-form-field>
       <button mat-raised-button color="primary" [disabled]="!selectedPropertyId()" (click)="startSession()">
-        Start Session
+        {{ 'simulation.startButton' | translate }}
       </button>
     </div>
   </div>

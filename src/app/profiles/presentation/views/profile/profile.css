@@ -1,0 +1,102 @@
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.page-subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+}
+
+.avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #12182b;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.account-email {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.account-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 2px 0 0 0;
+}
+
+.name-row {
+  display: flex;
+  gap: 12px;
+}
+
+.name-row .full-width {
+  flex: 1;
+  min-width: 0;
+}
+
+.full-width {
+  display: block;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.toggle-row {
+  margin: 8px 0 20px 0;
+}
+
+.empty {
+  color: #6b7280;
+  font-size: 0.875rem;
+}

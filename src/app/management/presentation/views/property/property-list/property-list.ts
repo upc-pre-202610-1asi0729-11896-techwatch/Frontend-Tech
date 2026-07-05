@@ -7,12 +7,13 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import {MatIcon} from '@angular/material/icon';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {ManagementStore} from '../../../../application/management-store';
 
 @Component({
   selector: 'app-property-list',
-  imports: [MatTableModule, MatButtonModule, MatError, MatProgressSpinner, MatIcon, MatPaginator, MatSort, MatSortHeader],
+  imports: [MatTableModule, MatButtonModule, MatError, MatProgressSpinner, MatIcon, MatPaginator, MatSort, MatSortHeader, TranslatePipe],
   templateUrl: './property-list.html',
   styleUrl: './property-list.css',
 })

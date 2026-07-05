@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import {TitleCasePipe} from '@angular/common';
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -7,6 +6,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {ManagementStore} from '../../../../application/management-store';
 import {SessionStore} from '../../../../../shared/application/session-store';
@@ -14,7 +14,7 @@ import {PropertyEntity, PropertyType} from '../../../../domain/models/property/p
 
 @Component({
   selector: 'app-property-form',
-  imports: [TitleCasePipe, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './property-form.html',
   styleUrl: './property-form.css',
 })

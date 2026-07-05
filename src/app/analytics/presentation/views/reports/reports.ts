@@ -1,5 +1,6 @@
 import {Component, effect, inject} from '@angular/core';
 import {DatePipe} from '@angular/common';
+import {RouterLink} from '@angular/router';
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatFormFieldModule, MatError} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -8,16 +9,18 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {TranslatePipe} from '@ngx-translate/core';
 
 import {AnalyticsStore} from '../../../application/analytics.store';
 import {ManagementStore} from '../../../../management/application/management-store';
 import {SessionStore} from '../../../../shared/application/session-store';
+import {SubscriptionStore} from '../../../../subscriptions/application/subscription-store';
 
 @Component({
   selector: 'app-reports',
   imports: [
-    DatePipe, ReactiveFormsModule, MatFormFieldModule, MatError, MatSelectModule,
-    MatInputModule, MatButtonModule, MatExpansionModule, MatTableModule, MatProgressSpinner,
+    DatePipe, RouterLink, ReactiveFormsModule, MatFormFieldModule, MatError, MatSelectModule,
+    MatInputModule, MatButtonModule, MatExpansionModule, MatTableModule, MatProgressSpinner, TranslatePipe,
   ],
   templateUrl: './reports.html',
   styleUrl: './reports.css',
@@ -26,6 +29,7 @@ export class Reports {
   readonly store = inject(AnalyticsStore);
   readonly managementStore = inject(ManagementStore);
   readonly session = inject(SessionStore);
+  readonly subscriptionStore = inject(SubscriptionStore);
   private fb = inject(FormBuilder);
 
   itemColumns = ['deviceName', 'consumption', 'usageFrequency'];
