@@ -4,6 +4,7 @@ import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs';
 
 import {BaseApi} from '../../shared/interface/base-api';
+import {toFriendlyError} from '../../shared/infrastructure/http-error';
 import {environment} from '../../../environments/environment';
 import {ConsumptionMetric} from '../domain/model/consumption-metric.entity';
 import {ConsumptionAlert} from '../domain/model/consumption-alert.entity';
@@ -67,16 +68,6 @@ export class AnalyticsApi extends BaseApi {
   }
 
   private handleError(operation: string) {
-    return (error: HttpErrorResponse): Observable<never> => {
-      let message = operation;
-      if (error.status === 404) {
-        message = `${operation} : Resource not found`;
-      } else if (error.error instanceof ErrorEvent) {
-        message = `${operation} : ${error.error.message}`;
-      } else {
-        message = `${operation} : ${error.statusText || 'Unexpected error'}`;
-      }
-      return throwError(() => new Error(message));
-    };
+    return (error: HttpErrorResponse): Observable<never> => throwError(() => toFriendlyError(operation, error));
   }
 }
